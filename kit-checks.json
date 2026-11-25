@@ -1,0 +1,28 @@
+{
+  "checks": [
+    {
+      "id": "client-side-tools-fetch",
+      "rule": "站群清單不可以在瀏覽器端 fetch 進來再塞 DOM",
+      "fix": "改在建置期讀清單（prebuild script 或直接 import 設定檔），讓連結出現在靜態 HTML 裡。爬蟲看不到 JS 塞進去的連結，這個 kit 的全部價值就在這一步。",
+      "pattern": "fetch\\(\\s*[`'\"][^`'\"]*(tools|brand|sites|family)\\.json",
+      "files": "\\.(js|mjs|cjs|ts|tsx|jsx|vue|svelte|astro)$",
+      "severity": "high"
+    },
+    {
+      "id": "html-without-current-url",
+      "rule": "呼叫 footer.html() 沒有傳參數",
+      "fix": "一定要傳 currentUrl：沒傳的話 footer 會連到自己，而且站群每個站的輪替起點都一樣（大家顯示同一組工具）。",
+      "pattern": "\\.html\\(\\s*\\)",
+      "files": "\\.(js|mjs|cjs|ts|tsx|jsx|vue|svelte|astro)$",
+      "severity": "medium"
+    },
+    {
+      "id": "overriding-structure-css",
+      "rule": "在專案樣式裡重寫 kit 的結構規則，而不是只覆寫 CSS 變數",
+      "fix": "深色模式／換皮只覆寫 --bfk-fg / --bfk-muted / --bfk-line / --bfk-card / --bfk-accent。整段重寫 .bfk-list 這類規則的話，下次 kit 升級版面就會脫節。",
+      "pattern": "\\.bfk-(footer|brand|list|nav|bottom)\\s*\\{",
+      "files": "\\.(css|scss)$",
+      "severity": "low"
+    }
+  ]
+}
