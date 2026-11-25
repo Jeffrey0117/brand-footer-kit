@@ -1,12 +1,37 @@
 {
   "name": "brand-footer-kit",
-  "version": "0.1.0",
-  "description": "站群品牌 footer：把一人開發者的各個站互相連起來。建置期產出靜態 HTML（爬蟲看得到，不是 JS 抓的），自動排除當前站、可輪替曝光、escape 與網址白名單。零依賴、框架無關。JSON-LD 請用 seo-schema-kit。",
+  "version": "0.2.0",
+  "description": "站群品牌 footer：把一人開發者的各個站互相連起來。建置期產出靜態 HTML（爬蟲看得到），自動排除當前站、可輪替曝光。零依賴、框架無關。",
   "main": "index.js",
+  "module": "index.mjs",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js",
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "index.mjs",
+    "kit-checks.json",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "example": "node example.js"
   },
-  "keywords": [],
+  "keywords": [
+    "footer",
+    "brand",
+    "cross-site",
+    "internal-linking",
+    "seo",
+    "static",
+    "zero-dependency"
+  ],
   "author": "Jeffrey0117",
   "license": "MIT"
 }
